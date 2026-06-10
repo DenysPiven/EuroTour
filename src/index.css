@@ -4,24 +4,36 @@
   box-sizing: border-box;
 }
 
+html {
+  height: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
   margin: 0;
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+  touch-action: manipulation;
 }
 
 #root,
 .app {
   width: 100%;
   height: 100vh;
+  height: 100dvh;
 }
 
 .trip-map {
   width: 100%;
   height: 100%;
+  touch-action: none;
+  z-index: 0;
 }
 
 .overlay {
   position: fixed;
-  bottom: 1rem;
+  bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
   left: 50%;
   transform: translateX(-50%);
   background: rgba(15, 23, 42, 0.85);
@@ -36,18 +48,19 @@ body {
 
 .overlay.warn {
   background: rgba(15, 23, 42, 0.75);
-  max-width: 90vw;
+  max-width: min(90vw, 28rem);
   font-size: 0.8rem;
+  text-align: center;
 }
 
 .overlay.error {
   background: rgba(185, 28, 28, 0.9);
-  max-width: 90vw;
+  max-width: min(90vw, 28rem);
 }
 
 .route-picker {
   position: fixed;
-  top: 1rem;
+  top: calc(1rem + env(safe-area-inset-top, 0px));
   right: 1rem;
   left: auto;
   z-index: 1000;
@@ -80,6 +93,7 @@ body {
   border-radius: 7px;
   font-size: 0.875rem;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .route-picker button:hover {
@@ -95,7 +109,7 @@ body {
 .route-distance-legend {
   position: fixed;
   left: 1rem;
-  bottom: 1rem;
+  bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
   z-index: 1000;
   background: rgba(255, 255, 255, 0.92);
   border: 1px solid rgba(15, 23, 42, 0.1);
@@ -105,6 +119,7 @@ body {
   padding: 0.55rem 0.75rem;
   font-family: system-ui, sans-serif;
   min-width: 220px;
+  max-width: calc(100vw - 2rem);
   pointer-events: none;
 }
 
@@ -134,4 +149,88 @@ body {
   margin-top: 0.35rem;
   font-size: 0.7rem;
   color: #64748b;
+}
+
+.leaflet-control-zoom a {
+  width: 34px;
+  height: 34px;
+  line-height: 34px;
+  font-size: 1.15rem;
+}
+
+.leaflet-popup-content {
+  margin: 12px 14px;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: 10px;
+}
+
+.leaflet-container a.leaflet-popup-close-button {
+  width: 32px;
+  height: 32px;
+  font-size: 1.25rem;
+  line-height: 32px;
+}
+
+@media (max-width: 640px) {
+  .route-picker {
+    top: calc(0.75rem + env(safe-area-inset-top, 0px));
+    left: 0.75rem;
+    right: 0.75rem;
+    max-width: none;
+  }
+
+  .route-picker button {
+    min-height: 44px;
+    padding: 0.65rem 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  .route-picker button:active {
+    background: #f1f5f9;
+  }
+
+  .route-distance-legend {
+    left: 0.75rem;
+    right: 0.75rem;
+    bottom: calc(0.75rem + env(safe-area-inset-bottom, 0px));
+    min-width: 0;
+  }
+
+  .overlay.warn {
+    bottom: auto;
+    top: calc(6.75rem + env(safe-area-inset-top, 0px));
+    left: 0.75rem;
+    right: 0.75rem;
+    transform: none;
+    max-width: none;
+  }
+
+  .leaflet-control-zoom {
+    margin-bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px)) !important;
+    margin-right: 0.5rem !important;
+  }
+
+  .leaflet-control-zoom a {
+    width: 44px;
+    height: 44px;
+    line-height: 44px;
+    font-size: 1.35rem;
+  }
+
+  .leaflet-popup-content {
+    margin: 14px 16px;
+    font-size: 1rem;
+    max-width: calc(100vw - 4rem);
+  }
+
+  .leaflet-container a.leaflet-popup-close-button {
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+    line-height: 40px;
+  }
 }

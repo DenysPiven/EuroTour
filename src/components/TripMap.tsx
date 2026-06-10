@@ -5,9 +5,12 @@ import {
   CircleMarker,
   Popup,
   useMap,
+  ZoomControl,
 } from "react-leaflet";
 import L from "leaflet";
 import type { RouteResult, Stop } from "../types";
+import { useIsMobile } from "../hooks/useIsMobile";
+import { MapResizeFix } from "./MapResizeFix";
 import { RouteDistanceLegend } from "./RouteDistanceLegend";
 import { TimeGradientRoute } from "./TimeGradientRoute";
 import { buildDistanceGradientRoute } from "../utils/distanceGradient";
@@ -17,7 +20,11 @@ const FALLBACK_WEIGHT = 3;
 
 type StopRole = "start" | "end" | "both" | "middle";
 
-function dotRadius(fallback?: boolean) {
+function dotRadius(fallback: boolean | undefined, isMobile: boolean) {
+  if (isMobile) {
+    return fallback ? 5 : 6;
+  }
+
   const lineWeight = fallback ? FALLBACK_WEIGHT : ROUTE_WEIGHT;
   return Math.max(1.5, lineWeight / 2 - 0.5);
 }
@@ -43,8 +50,8 @@ function getStopRole(index: number, stops: Stop[]): StopRole | "skip" {
   return "middle";
 }
 
-function markerStyle(role: StopRole, fallback?: boolean) {
-  const radius = dotRadius(fallback);
+function markerStyle(role: StopRole, fallback: boolean | undefined, isMobile: boolean) {
+  const radius = dotRadius(fallback, isMobile);
 
   switch (role) {
     case "start":
@@ -103,7 +110,15 @@ function roleLabel(role: StopRole) {
   }
 }
 
-function FitBounds({ stops, route }: { stops: Stop[]; route: RouteResult | null }) {
+function FitBounds({
+  stops,
+  route,
+  isMobile,
+}: {
+  stops: Stop[];
+  route: RouteResult | null;
+  isMobile: boolean;
+}) {
   const map = useMap();
 
   useEffect(() => {
@@ -114,8 +129,12 @@ function FitBounds({ stops, route }: { stops: Stop[]; route: RouteResult | null 
     if (points.length === 0) {
       return;
     }
-    map.fitBounds(L.latLngBounds(points), { padding: [40, 40] });
-  }, [map, stops, route]);
+
+    map.fitBounds(L.latLngBounds(points), {
+      paddingTopLeft: L.point(isMobile ? 16 : 40, isMobile ? 112 : 40),
+      paddingBottomRight: L.point(isMobile ? 16 : 40, isMobile ? 88 : 40),
+    });
+  }, [map, stops, route, isMobile]);
 
   return null;
 }
@@ -126,6 +145,7 @@ interface TripMapProps {
 }
 
 export function TripMap({ stops, route }: TripMapProps) {
+  const isMobile = useIsMobile();
   const center: [number, number] = stops[0]
     ? [stops[0].lat, stops[0].lng]
     : [50.0, 10.0];
@@ -138,18 +158,26 @@ export function TripMap({ stops, route }: TripMapProps) {
 
   return (
     <>
-    <MapContainer center={center} zoom={5} className="trip-map">
+    <MapContainer
+      center={center}
+      zoom={5}
+      className="trip-map"
+      zoomControl={false}
+      tapTolerance={20}
+    >
+      <ZoomControl position="bottomright" />
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
         url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
       />
-      <FitBounds stops={stops} route={route} />
+      <MapResizeFix />
+      <FitBounds stops={stops} route={route} isMobile={isMobile} />
       {route && <TimeGradientRoute route={route} gradient={gradient} />}
       {stops.map((stop, index) => {
         const role = getStopRole(index, stops);
         if (role === "skip") return null;
 
-        const { radius, pathOptions } = markerStyle(role, route?.fallback);
+        const { radius, pathOptions } = markerStyle(role, route?.fallback, isMobile);
         const label = roleLabel(role);
 
         return (
