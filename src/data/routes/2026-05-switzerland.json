@@ -14,6 +14,8 @@
   { "name": "Kriens", "lat": 47.0341, "lng": 8.2808, "date": "2026-06-08", "notes": "Supercharger · 7:46 PM" },
   { "name": "Hergiswil", "lat": 47.0319, "lng": 7.9856 },
   { "name": "Wallisellen", "lat": 47.4166, "lng": 8.592, "date": "2026-06-09", "notes": "Supercharger · 5:15 PM" },
+  { "name": "Rheinfall", "lat": 47.6784, "lng": 8.6149 },
+  { "name": "Hergiswil", "lat": 47.0319, "lng": 7.9856 },
   { "name": "Airolo", "lat": 46.529, "lng": 8.6086, "date": "2026-06-10", "notes": "Supercharger · 1:58 PM" },
   { "name": "Forte dei Marmi", "lat": 43.9596, "lng": 10.1699, "date": "2026-06-10", "notes": "Supercharger · 7:38 PM" },
   { "name": "Pisa", "lat": 43.7228, "lng": 10.4017 },
