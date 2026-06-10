@@ -1,0 +1,137 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+#root,
+.app {
+  width: 100%;
+  height: 100vh;
+}
+
+.trip-map {
+  width: 100%;
+  height: 100%;
+}
+
+.overlay {
+  position: fixed;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(15, 23, 42, 0.85);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-family: system-ui, sans-serif;
+  font-size: 0.875rem;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.overlay.warn {
+  background: rgba(15, 23, 42, 0.75);
+  max-width: 90vw;
+  font-size: 0.8rem;
+}
+
+.overlay.error {
+  background: rgba(185, 28, 28, 0.9);
+  max-width: 90vw;
+}
+
+.route-picker {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  left: auto;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.12);
+  backdrop-filter: blur(8px);
+  font-family: system-ui, sans-serif;
+  max-width: min(240px, calc(100vw - 2rem));
+}
+
+.route-picker ul {
+  list-style: none;
+  margin: 0;
+  padding: 0.35rem;
+}
+
+.route-picker li + li {
+  margin-top: 0.2rem;
+}
+
+.route-picker button {
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: #334155;
+  text-align: left;
+  padding: 0.45rem 0.65rem;
+  border-radius: 7px;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.route-picker button:hover {
+  background: #f1f5f9;
+}
+
+.route-picker button.active {
+  background: #2563eb;
+  color: #fff;
+  font-weight: 600;
+}
+
+.route-distance-legend {
+  position: fixed;
+  left: 1rem;
+  bottom: 1rem;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.12);
+  backdrop-filter: blur(8px);
+  padding: 0.55rem 0.75rem;
+  font-family: system-ui, sans-serif;
+  min-width: 220px;
+  pointer-events: none;
+}
+
+.route-distance-legend__label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 0.4rem;
+}
+
+.route-distance-legend__bar {
+  height: 10px;
+  border-radius: 999px;
+  background: linear-gradient(
+    to right,
+    hsl(220, 82%, 48%),
+    hsl(110, 82%, 48%),
+    hsl(0, 82%, 48%)
+  );
+}
+
+.route-distance-legend__scale {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 0.35rem;
+  font-size: 0.7rem;
+  color: #64748b;
+}

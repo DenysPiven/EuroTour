@@ -1,0 +1,13 @@
+[
+  {
+    "id": "2026-02-dragobrat",
+    "name": "Dragobrat, February 2026",
+    "file": "2026-02-dragobrat.json",
+    "mode": "train"
+  },
+  {
+    "id": "2026-05-switzerland",
+    "name": "Switzerland, May 2026",
+    "file": "2026-05-switzerland.json"
+  }
+]
