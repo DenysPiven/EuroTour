@@ -19,6 +19,8 @@
   { "name": "Airolo", "lat": 46.529, "lng": 8.6086, "date": "2026-06-10", "notes": "Supercharger · 1:58 PM" },
   { "name": "Forte dei Marmi", "lat": 43.9596, "lng": 10.1699, "date": "2026-06-10", "notes": "Supercharger · 7:38 PM" },
   { "name": "Pisa", "lat": 43.7228, "lng": 10.4017 },
+  { "name": "Castiglioncello", "lat": 43.4038, "lng": 10.4109, "notes": "Hotel Tirreno · Via Marconi 6" },
+  { "name": "Jesolo", "lat": 45.5015, "lng": 12.6376 },
   { "name": "Venice", "lat": 45.4408, "lng": 12.3155 },
   { "name": "Warsaw", "lat": 52.2297, "lng": 21.0122 },
   { "name": "Vinnytsia", "lat": 49.2331, "lng": 28.4682 }
