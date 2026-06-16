@@ -11,6 +11,7 @@
   { "name": "Wörth an der Isar", "lat": 48.6235, "lng": 12.3155, "date": "2026-06-07", "notes": "Supercharger · 9:43 PM" },
   { "name": "Eching", "lat": 48.2976, "lng": 11.6222, "date": "2026-06-08", "notes": "Supercharger · 9:46 AM" },
   { "name": "Lindau", "lat": 47.5457, "lng": 9.6822, "date": "2026-06-08", "notes": "Supercharger · 12:27 PM" },
+  { "name": "Vaduz", "lat": 47.141, "lng": 9.5209 },
   { "name": "Kriens", "lat": 47.0341, "lng": 8.2808, "date": "2026-06-08", "notes": "Supercharger · 7:46 PM" },
   { "name": "Hergiswil", "lat": 47.0319, "lng": 7.9856 },
   { "name": "Wallisellen", "lat": 47.4166, "lng": 8.592, "date": "2026-06-09", "notes": "Supercharger · 5:15 PM" },
@@ -22,6 +23,8 @@
   { "name": "Castiglioncello", "lat": 43.4038, "lng": 10.4109, "notes": "Hotel Tirreno · Via Marconi 6" },
   { "name": "Jesolo", "lat": 45.5015, "lng": 12.6376 },
   { "name": "Venice", "lat": 45.4408, "lng": 12.3155 },
+  { "name": "Jesolo", "lat": 45.5015, "lng": 12.6376 },
   { "name": "Warsaw", "lat": 52.2297, "lng": 21.0122 },
+  { "name": "Lviv", "lat": 49.8397, "lng": 24.0297 },
   { "name": "Vinnytsia", "lat": 49.2331, "lng": 28.4682 }
 ]
