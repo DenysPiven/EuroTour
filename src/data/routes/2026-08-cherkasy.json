@@ -1,0 +1,7 @@
+[
+  { "name": "Vinnytsia", "lat": 49.2331, "lng": 28.4682, "date": "2026-08-26", "notes": "IC+ 706Л · 15:12" },
+  { "name": "Kyiv", "lat": 50.4501, "lng": 30.5234, "date": "2026-08-26", "notes": "Kyiv-Pas · 17:35" },
+  { "name": "Cherkasy", "lat": 49.4447, "lng": 32.0588, "date": "2026-08-29", "notes": "Train 244 · arrive 11:53" },
+  { "name": "Kyiv", "lat": 50.4501, "lng": 30.5234, "date": "2026-08-31" },
+  { "name": "Vinnytsia", "lat": 49.2331, "lng": 28.4682 }
+]

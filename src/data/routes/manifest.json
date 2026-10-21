@@ -11,13 +11,15 @@
     "file": "2026-05-switzerland.json"
   },
   {
-    "id": "ua-kyiv-cherkasy",
-    "name": "Vinnytsia — Kyiv — Cherkasy",
-    "file": "ua-kyiv-cherkasy.json"
+    "id": "2026-08-cherkasy",
+    "name": "Cherkasy, August 2026",
+    "file": "2026-08-cherkasy.json",
+    "mode": "train"
   },
   {
-    "id": "ua-kosiv",
-    "name": "Vinnytsia — Kosiv — Lviv",
-    "file": "ua-kosiv.json"
+    "id": "2026-10-kosiv",
+    "name": "Kosiv, October 2026",
+    "file": "2026-10-kosiv.json",
+    "mode": "train"
   }
 ]
