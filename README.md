@@ -31,4 +31,4 @@ npm run dev
 1. Add a stops file in `src/data/routes/` (e.g. `2026-06-trip.json`)
 2. Register it in `src/data/routes/manifest.json`
 
-Each stop needs `name`, `lat`, and `lng`. Optional: `date`, `notes`.
+Each stop needs `name`, `lat`, and `lng`. Optional: `date`, `notes`, `mode` (`"driving"` | `"train"`) for the leg to the next stop (defaults to the route mode in `manifest.json`).

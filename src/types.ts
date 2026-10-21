@@ -14,6 +14,8 @@ export interface StopInput {
   lng?: number;
   date?: string;
   notes?: string;
+  /** Travel mode for the leg from this stop to the next. Falls back to the route mode. */
+  mode?: RouteMode;
   resolvedAddress?: string;
 }
 
