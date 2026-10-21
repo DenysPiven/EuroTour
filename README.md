@@ -17,7 +17,7 @@ The route line uses a **distance gradient** (blue → red) to show how far you'v
 
 ## Stack
 
-React · TypeScript · Vite · Leaflet · Esri Light Gray basemap · OSRM (driving) · OpenRailRouting / Overpass (train)
+React · TypeScript · Vite · Leaflet · Esri World Street Map · OSRM (driving) · OpenRailRouting / Overpass (train)
 
 ## Local development
 
