@@ -167,9 +167,9 @@ export function TripMap({ stops, route }: TripMapProps) {
     >
       <ZoomControl position="bottomright" />
       <TileLayer
-        attribution='Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ'
-        url="https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}"
-        maxZoom={16}
+        attribution='Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, TomTom'
+        url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}"
+        maxZoom={19}
       />
       <MapResizeFix />
       <FitBounds stops={stops} route={route} isMobile={isMobile} />
