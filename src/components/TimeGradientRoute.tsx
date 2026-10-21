@@ -26,30 +26,17 @@ function RouteOutline({
   dashed?: boolean;
 }) {
   return (
-    <>
-      <Polyline
-        positions={positions}
-        pathOptions={{
-          color: "#0f172a",
-          weight: weight + OUTLINE_EXTRA + 1,
-          opacity: 0.28,
-          lineCap: "round",
-          lineJoin: "round",
-          dashArray: dashed ? "6 8" : undefined,
-        }}
-      />
-      <Polyline
-        positions={positions}
-        pathOptions={{
-          color: "#ffffff",
-          weight: weight + OUTLINE_EXTRA,
-          opacity: 0.95,
-          lineCap: "round",
-          lineJoin: "round",
-          dashArray: dashed ? "6 8" : undefined,
-        }}
-      />
-    </>
+    <Polyline
+      positions={positions}
+      pathOptions={{
+        color: "#000000",
+        weight: weight + OUTLINE_EXTRA,
+        opacity: 0.9,
+        lineCap: "round",
+        lineJoin: "round",
+        dashArray: dashed ? "6 8" : undefined,
+      }}
+    />
   );
 }
 
