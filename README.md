@@ -10,7 +10,7 @@ Interactive map of road and train trips across Europe. Routes are defined in JSO
 |------|------|
 | Dragobrat, February 2026 | train |
 | Switzerland, May 2026 | driving |
-| Cherkasy, August 2026 | train |
+| Cherkasy, September 2026 | train |
 | Kosiv, October 2026 | train |
 
 The route line uses a **distance gradient** (blue → red) to show how far you've traveled. Stops with dates show charging info in popups.
