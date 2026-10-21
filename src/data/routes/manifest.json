@@ -9,5 +9,15 @@
     "id": "2026-05-switzerland",
     "name": "Switzerland, May 2026",
     "file": "2026-05-switzerland.json"
+  },
+  {
+    "id": "ua-kyiv-cherkasy",
+    "name": "Vinnytsia — Kyiv — Cherkasy",
+    "file": "ua-kyiv-cherkasy.json"
+  },
+  {
+    "id": "ua-kosiv",
+    "name": "Vinnytsia — Kosiv — Lviv",
+    "file": "ua-kosiv.json"
   }
 ]
