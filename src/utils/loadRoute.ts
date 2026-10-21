@@ -12,6 +12,7 @@ function createStop(input: StopInput, index: number): Stop {
     address: input.address,
     date: input.date,
     notes: input.notes,
+    mode: input.mode,
     resolvedAddress: input.resolvedAddress,
   };
 }
@@ -69,16 +70,12 @@ export async function loadRoute(routeId: string): Promise<{
 
   try {
     const route = await buildRoute(stops, mode);
-    if (route.fallback && mode === "train") {
-      warnings.push("Some train segments unavailable — showing direct path");
+    if (route.fallback) {
+      warnings.push("Some route segments unavailable — showing direct path");
     }
     return { stops, route, warnings };
   } catch {
-    warnings.push(
-      mode === "train"
-        ? "Train route unavailable — showing direct path"
-        : "Road route unavailable — showing direct path",
-    );
+    warnings.push("Route unavailable — showing direct path");
     return { stops, route: buildFallbackRoute(stops, mode), warnings };
   }
 }

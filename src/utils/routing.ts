@@ -100,13 +100,106 @@ async function buildDrivingRoute(
   };
 }
 
-export async function buildRoute(
+function legMode(stop: Stop, defaultMode: RouteMode): RouteMode {
+  return stop.mode ?? defaultMode;
+}
+
+/** Split stops into contiguous groups that share the same travel mode. */
+export function splitStopsByMode(
   stops: Stop[],
-  mode: RouteMode = "driving",
+  defaultMode: RouteMode,
+): Array<{ mode: RouteMode; stops: Stop[] }> {
+  if (stops.length < 2) {
+    return [];
+  }
+
+  const groups: Array<{ mode: RouteMode; stops: Stop[] }> = [];
+  let currentMode = legMode(stops[0], defaultMode);
+  let currentStops: Stop[] = [stops[0]];
+
+  for (let i = 1; i < stops.length; i++) {
+    currentStops.push(stops[i]);
+
+    if (i < stops.length - 1) {
+      const nextMode = legMode(stops[i], defaultMode);
+      if (nextMode !== currentMode) {
+        groups.push({ mode: currentMode, stops: currentStops });
+        currentMode = nextMode;
+        currentStops = [stops[i]];
+      }
+    }
+  }
+
+  groups.push({ mode: currentMode, stops: currentStops });
+  return groups;
+}
+
+async function buildUniformRoute(
+  stops: Stop[],
+  mode: RouteMode,
   onProgress?: (segment: number, total: number) => void,
 ): Promise<RouteResult> {
   if (mode === "train") {
     return buildTrainRoute(stops, onProgress);
   }
   return buildDrivingRoute(stops, onProgress);
+}
+
+export async function buildRoute(
+  stops: Stop[],
+  mode: RouteMode = "driving",
+  onProgress?: (segment: number, total: number) => void,
+): Promise<RouteResult> {
+  const groups = splitStopsByMode(stops, mode);
+
+  if (groups.length === 0) {
+    return {
+      coordinates: stops.map((s) => [s.lat, s.lng] as [number, number]),
+      stats: { distanceKm: 0, durationHours: 0, segments: 0 },
+      mode,
+    };
+  }
+
+  if (groups.length === 1) {
+    return buildUniformRoute(groups[0].stops, groups[0].mode, onProgress);
+  }
+
+  const allCoordinates: [number, number][] = [];
+  let totalDistance = 0;
+  let totalDuration = 0;
+  let totalSegments = 0;
+  let anyFallback = false;
+
+  for (let i = 0; i < groups.length; i++) {
+    const group = groups[i];
+    onProgress?.(i + 1, groups.length);
+
+    let part: RouteResult;
+    try {
+      part = await buildUniformRoute(group.stops, group.mode);
+    } catch {
+      part = buildFallbackRoute(group.stops, group.mode);
+    }
+
+    if (allCoordinates.length > 0 && part.coordinates.length > 0) {
+      part.coordinates.shift();
+    }
+
+    allCoordinates.push(...part.coordinates);
+    totalDistance += part.stats.distanceKm;
+    totalDuration += part.stats.durationHours;
+    totalSegments += part.stats.segments;
+    anyFallback = anyFallback || Boolean(part.fallback);
+  }
+
+  return {
+    coordinates: allCoordinates,
+    stats: {
+      distanceKm: totalDistance,
+      durationHours: totalDuration,
+      segments: totalSegments,
+    },
+    mode,
+    fallback: anyFallback,
+  };
 }
