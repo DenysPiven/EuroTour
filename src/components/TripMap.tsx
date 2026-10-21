@@ -15,8 +15,8 @@ import { RouteDistanceLegend } from "./RouteDistanceLegend";
 import { TimeGradientRoute } from "./TimeGradientRoute";
 import { buildDistanceGradientRoute } from "../utils/distanceGradient";
 
-const ROUTE_WEIGHT = 5;
-const FALLBACK_WEIGHT = 3;
+const ROUTE_WEIGHT = 6;
+const FALLBACK_WEIGHT = 4;
 
 type StopRole = "start" | "end" | "both" | "middle";
 
@@ -167,9 +167,9 @@ export function TripMap({ stops, route }: TripMapProps) {
     >
       <ZoomControl position="bottomright" />
       <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-        url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
-        maxZoom={19}
+        attribution='Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ'
+        url="https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}"
+        maxZoom={16}
       />
       <MapResizeFix />
       <FitBounds stops={stops} route={route} isMobile={isMobile} />
